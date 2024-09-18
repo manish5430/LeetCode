@@ -10,6 +10,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0217-contains-duplicate](https://github.com/manish5430/LeetCode/tree/master/0217-contains-duplicate) |
 | [0283-move-zeroes](https://github.com/manish5430/LeetCode/tree/master/0283-move-zeroes) |
 | [1421-find-numbers-with-even-number-of-digits](https://github.com/manish5430/LeetCode/tree/master/1421-find-numbers-with-even-number-of-digits) |
+| [1791-richest-customer-wealth](https://github.com/manish5430/LeetCode/tree/master/1791-richest-customer-wealth) |
 ## Two Pointers
 |  |
 | ------- |
@@ -30,4 +31,8 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 |  |
 | ------- |
 | [0217-contains-duplicate](https://github.com/manish5430/LeetCode/tree/master/0217-contains-duplicate) |
+## Matrix
+|  |
+| ------- |
+| [1791-richest-customer-wealth](https://github.com/manish5430/LeetCode/tree/master/1791-richest-customer-wealth) |
 <!---LeetCode Topics End-->
