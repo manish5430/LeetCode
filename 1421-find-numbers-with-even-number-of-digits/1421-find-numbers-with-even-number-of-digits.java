@@ -3,10 +3,11 @@ class Solution {
         int count = 0; 
 
         for(int num : nums){
-            if( String.valueOf(num).length() % 2 == 0){
-                count++;
-            }
+        int digits = (int) Math.log10(num) + 1;
+        if( digits % 2 ==0){
+            count++;
         }
-        return count;
     }
+    return count;
+}
 }
