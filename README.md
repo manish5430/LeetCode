@@ -36,6 +36,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0189-rotate-array](https://github.com/manish5430/LeetCode/tree/master/0189-rotate-array) |
 | [0268-missing-number](https://github.com/manish5430/LeetCode/tree/master/0268-missing-number) |
 | [0367-valid-perfect-square](https://github.com/manish5430/LeetCode/tree/master/0367-valid-perfect-square) |
+| [0441-arranging-coins](https://github.com/manish5430/LeetCode/tree/master/0441-arranging-coins) |
 | [0628-maximum-product-of-three-numbers](https://github.com/manish5430/LeetCode/tree/master/0628-maximum-product-of-three-numbers) |
 | [1421-find-numbers-with-even-number-of-digits](https://github.com/manish5430/LeetCode/tree/master/1421-find-numbers-with-even-number-of-digits) |
 ## Hash Table
@@ -66,6 +67,7 @@ A collection of LeetCode questions to ace the coding interview! - Created using 
 | [0367-valid-perfect-square](https://github.com/manish5430/LeetCode/tree/master/0367-valid-perfect-square) |
 | [0374-guess-number-higher-or-lower](https://github.com/manish5430/LeetCode/tree/master/0374-guess-number-higher-or-lower) |
 | [0410-split-array-largest-sum](https://github.com/manish5430/LeetCode/tree/master/0410-split-array-largest-sum) |
+| [0441-arranging-coins](https://github.com/manish5430/LeetCode/tree/master/0441-arranging-coins) |
 | [0745-find-smallest-letter-greater-than-target](https://github.com/manish5430/LeetCode/tree/master/0745-find-smallest-letter-greater-than-target) |
 | [0882-peak-index-in-a-mountain-array](https://github.com/manish5430/LeetCode/tree/master/0882-peak-index-in-a-mountain-array) |
 | [1185-find-in-mountain-array](https://github.com/manish5430/LeetCode/tree/master/1185-find-in-mountain-array) |
