@@ -1,15 +1,22 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        int[] freqArr = new int[nums.length];
+        
+        for(int i=0; i< nums.length;){
+            int correct = nums[i] -1;
 
-        for(int num : nums){
-            freqArr[num]++;
-        }
-        for(int n : nums){
-            if(freqArr[n] > 1){
-                return n;
+            if(nums[i] != nums[correct]){
+                swap(nums, i, correct);
+            }
+            else{
+                i++;
             }
         }
-        return -1;
+        return nums[nums.length-1];
+    }
+
+    static void swap(int[] nums, int start, int end){
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
     }
 }
