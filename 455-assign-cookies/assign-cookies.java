@@ -12,7 +12,7 @@ class Solution {
                 i++;
                 j++;
                 count++;
-                continue;
+             //   continue;
 
             }else{
                 j++;
