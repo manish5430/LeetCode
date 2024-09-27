@@ -1,22 +1,28 @@
 class Solution {
     public int thirdMax(int[] nums) {
-        // Create a TreeSet to store unique numbers in sorted order
-        TreeSet<Integer> set = new TreeSet<>();
+        ArrayList<Integer> uniqueList = new ArrayList<>();
 
-        // Step 1: Add unique elements to the TreeSet
+        // Step 1: Collect unique numbers
         for (int num : nums) {
-            set.add(num);
-            // Maintain only the top three maximums in the TreeSet
-            if (set.size() > 3) {
-                set.pollFirst(); // Remove the smallest element to keep only the largest three
+            if (!uniqueList.contains(num)) {
+                uniqueList.add(num);
             }
         }
 
-        // Step 2: Check if there are three unique numbers
-        if (set.size() < 3) {
-            return set.last(); // Return the largest if there are fewer than three unique numbers
-        } else {
-            return set.first(); // The first element is the third maximum
+        // Step 2: Check if we have at least 3 unique numbers
+        if (uniqueList.size() < 3) {
+            // Find the maximum manually
+            int max = uniqueList.get(0);
+            for (int i = 1; i < uniqueList.size(); i++) {
+                if (uniqueList.get(i) > max) {
+                    max = uniqueList.get(i);
+                }
+            }
+            return max; // Return the maximum
         }
+
+        // Step 3: Sort the list and return the third maximum
+        uniqueList.sort(null); // Sort the list
+        return uniqueList.get(uniqueList.size() - 3); // Return the third maximum
     }
 }
