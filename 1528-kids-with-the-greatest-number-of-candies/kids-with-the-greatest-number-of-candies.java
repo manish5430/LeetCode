@@ -1,22 +1,25 @@
 class Solution {
-    public List<Boolean> kidsWithCandies(int[] nums, int n){
-        List<Boolean> result = new ArrayList<>();
+    public List<Boolean> kidsWithCandies(int[] candies, int k) {
+        ArrayList<Boolean> list = new ArrayList<>();
 
-        int maxval = nums[0];
-        for(int i=0; i<nums.length; i++){
-            if(maxval < nums[i]){
-                maxval = nums[i];
+        for(int num : candies){
+            int m = maxval(candies);
+            if( num + k  >= m){
+                list.add(true);
+            }else{
+                list.add(false);
             }
         }
+        return list;
+    }
 
-        for(int num : nums){
-            if((num + n) >= maxval){
-                result.add(true);
-            }
-            else{
-                result.add(false);
+    static int maxval(int[] arr){
+        int max = arr[0];
+        for(int i=0; i< arr.length; i++){
+            if( arr[i] > max){
+                max = arr[i];
             }
         }
-        return result;    
+        return max;
     }
 }
