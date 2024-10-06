@@ -1,14 +1,20 @@
 class Solution {
     public int[] smallerNumbersThanCurrent(int[] nums) {
-        int[] freqArr = new int[nums.length];
+        ArrayList<Integer> list = new ArrayList<>();
 
-        for(int i=0; i<nums.length; i++){
-            for(int j=0; j<nums.length; j++){
-                if( i!=j && nums[i] > nums[j]){
-                    freqArr[i]++;
+        for(int i = 0; i< nums.length; i++){
+            int count = 0;
+            for(int j=0; j< nums.length; j++){
+                if(i != j  && nums[i] > nums[j]){
+                    count++;
                 }
             }
+            list.add(count);
         }
-        return freqArr;
+        int[] ans = new int[list.size()];
+        for(int i=0; i< ans.length; i++){
+            ans[i] = list.get(i);
+        }
+        return ans;
     }
 }
