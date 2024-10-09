@@ -8,18 +8,18 @@ class Solution {
         }
 
         int[][] ans = new int[r][c];
-        ArrayList<Integer> list = new ArrayList<>();
-        for(int[] i : mat){
-            for(int num : i){
-                list.add(num);
-            }
-        }
-
         int a = 0;
-        for(int i=0; i< r; i++){
-            for(int j=0; j< c; j++){
-                ans[i][j] = list.get(a);
-                a++;
+        int b = 0;
+
+        for(int i =0; i< row; i++){
+            for(int j=0; j< col; j++){
+                ans[a][b] = mat[i][j];
+                b++;
+
+                if( b == c){
+                    b = 0; 
+                    a++;
+                }
             }
         }
         return ans;
