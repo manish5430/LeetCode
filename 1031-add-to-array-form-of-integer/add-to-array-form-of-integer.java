@@ -1,35 +1,35 @@
 class Solution {
     public List<Integer> addToArrayForm(int[] num, int k) {
-      List<Integer> ans = new ArrayList();
-
-      int i = num.length -1;
-      int carry = 0;
-
-      while( i >=0 ||  k >0 ){
-        int value = 0;
-
-        if( i >= 0){
-            value = num[i];
+        ArrayList<Integer> nums = new ArrayList<>();
+        for(int i : num){
+            nums.add(i);
         }
 
-        int l = k % 10;
-        int sum = value + l + carry;
+        int n = nums.size() -1;
+        int carry = 0;
 
-        int digit = sum % 10;
-        carry = sum / 10;
+        for(int i = n; i >= 0; i--){
+            int sum = nums.get(i) + k%10 + carry;
+            nums.set(i, sum %10);
+            carry = sum /10;
+            k = k/10;
 
-        ans.add(digit);
+            if( k==0 && carry == 0){
+                break;
+            }
+        }
 
-        i--;
-        k = k/10;
-      }
-      
-    if( carry > 0){
-        ans.add(carry);
-    }
-    
-    Collections.reverse(ans);
+        // if any k is still left to process
+        while(k > 0){
+            int val = k %10 + carry;
+            nums.add(0, val %10);
+            carry = val /10;
+            k = k/10;
+        }
 
-    return ans;
+        if( carry >0){
+            nums.add(0, carry);
+        }
+        return nums;
     }
 }
