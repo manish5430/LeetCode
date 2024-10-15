@@ -1,19 +1,18 @@
 class Solution {
     public int specialArray(int[] nums) {
- Arrays.sort(nums);
-
-        // Check for every possible x from 0 to the length of the array
-        for (int x = 0; x <= nums.length; x++) {
+        Arrays.sort(nums);
+        
+        for(int x =0; x<= nums.length; x++){
             int count = 0;
-            for (int num : nums) {
-                if (num >= x) {
+            for(int i = 0; i< nums.length; i++){
+                if( nums[i] >= x){
                     count++;
-                }
+                } 
             }
-            if (count == x) {
-                return count; // Found a special number
+            if( count == x){
+                return count;
             }
         }
-        return -1; // Return false if no special number is found
+        return -1;
     }
 }
