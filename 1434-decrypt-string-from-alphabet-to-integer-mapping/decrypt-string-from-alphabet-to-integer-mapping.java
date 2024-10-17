@@ -2,22 +2,17 @@ class Solution {
     public String freqAlphabets(String s) {
        StringBuilder sb = new StringBuilder();
 
-       int n = s.length();
-       int i = 0;
-
-       while(i < n){
-        if( (i +2) < n  &&  s.charAt(i+2) == '#'){
-            int num = Integer.parseInt(s.substring(i, i+2));
-            char ch = (char)(num + 96);
-            sb.append(ch);
+       for(int i = 0; i< s.length();){
+        int number;
+        if((i +2) < s.length()  && s.charAt(i+2) == '#'){
+            number = (s.charAt(i) -'0') * 10  + (s.charAt(i+1) - '0');
             i = i+3;
         }
         else{
-            char ch = s.charAt(i);
-            sb.append((char)(ch + 48));
+            number = s.charAt(i) - '0';
             i++;
-
         }
+        sb.append((char)(number + 96));
        }
        return sb.toString();
        
