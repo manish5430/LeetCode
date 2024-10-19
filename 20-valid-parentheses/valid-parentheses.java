@@ -6,8 +6,10 @@ class Solution {
             if( c == '(')  stack.push(')');
             else if( c == '[')  stack.push(']');
             else if( c == '{')  stack.push('}');
-            else if( stack.isEmpty() || stack.pop() != c ){
-                return false;
+            else if(c == ')' || c == ']' || c == '}'){
+                if( stack.isEmpty() || stack.pop() != c ){
+                  return false;
+                }
             }          
         }
         return stack.isEmpty();
