@@ -4,13 +4,8 @@ class Solution {
             return 0;
         }
        boolean[] isPrime = new boolean[n +1];
-       return sieve(n, isPrime);
-       
-
-
-    }
-    static int sieve(int n, boolean[] isPrime){
-        for(int i = 2; i<= Math.sqrt(n); i++){
+      
+       for(int i = 2; i<= Math.sqrt(n); i++){
             if( !isPrime[i]){
                 for(int j = i*i; j <= n; j += i){
                     isPrime[j] = true;
