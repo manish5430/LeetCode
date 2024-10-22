@@ -7,17 +7,16 @@ class Solution {
                 return false;
             }
             set.add(n);
-        
-            String nums = Integer.toString(n);
-            char[] arr = nums.toCharArray();
 
-            int sum = 0; 
-            for(int i = 0; i< arr.length; i++){
-                int digit = arr[i] - '0';
+            int sum = 0;
+            while( n > 0){
+                int digit  = n % 10;
                 sum += digit * digit;
+                n = n /10;
             }
-            n = sum;
+            n = sum; 
         }
-        return true;
+        return true;       
+
     }
 }
