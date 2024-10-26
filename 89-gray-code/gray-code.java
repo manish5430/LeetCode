@@ -1,21 +1,14 @@
 class Solution {
     public List<Integer> grayCode(int n) {
-        if( n ==1){
-            List<Integer> arr = new ArrayList<>();
-            arr.add(0);
-            arr.add(1);
-            return arr;
-        }
-
-        List<Integer> list = grayCode(n-1);
         List<Integer> result = new ArrayList<>();
-        for(int i= 0; i< list.size(); i++){
-            result.add(list.get(i));
-        }
+        result.add(0);
 
-        int addBit = 1 << (n-1);
-        for(int i = list.size()-1; i>= 0; i--){
-            result.add(addBit + list.get(i));
+        for(int i = 0; i < n; i++){
+            int addBit = 1 << i;
+
+            for(int j = result.size()-1; j >= 0; j--){
+                result.add(addBit + result.get(j));
+            }
         }
         return result;
     }
