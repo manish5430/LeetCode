@@ -10,7 +10,7 @@ class Solution {
             start++;
             end--;
         }
-        System.out.println(Arrays.toString(s));
+        //System.out.println(Arrays.toString(s));
 
     }
 
