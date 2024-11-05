@@ -1,13 +1,14 @@
 class Solution {
     public int minChanges(String s) {
         int count = 0;
-        char[] c = s.toCharArray();
-        for(int i=0; i< c.length-1; i+= 2){
-            if(c[i] != c[i+1]){
+        int i = 0; 
+
+        while( i < s.length()){
+            if( s.charAt(i) != s.charAt(i+1)){
                 count++;
             }
-        }
-        return count;   
-        
+            i = i+2;
+        }  
+        return count;
     }
 }
