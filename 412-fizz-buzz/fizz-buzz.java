@@ -13,7 +13,7 @@ class Solution {
                 list.add("Buzz");
             }
             else{
-                list.add(String.valueOf(i));
+                list.add(Integer.toString(i));
             }
         }
         return list;
