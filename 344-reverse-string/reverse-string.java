@@ -4,7 +4,9 @@ class Solution {
         int end = s.length-1;
 
         while( start < end){
-            swap(s, start, end);
+            char temp = s[start];
+            s[start] = s[end];
+            s[end] = temp;
             start++;
             end--;
         }
@@ -12,9 +14,9 @@ class Solution {
 
     }
 
-    static void swap(char[] arr, int start, int end ){
-        char temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-    }
+    // static void swap(char[] arr, int start, int end ){
+    //     char temp = arr[start];
+    //     arr[start] = arr[end];
+    //     arr[end] = temp;
+    // }
 }
