@@ -11,15 +11,15 @@ class Solution {
             
         }
 
-        for(int i = 0; i< s1.length(); i++){
-            for(int j = 0; j< s1.length(); j++){
+        // for(int i = 0; i< s1.length(); i++){
+        //     for(int j = 0; j< s1.length(); j++){
                 
-                if(swap(s1, i, j).equals(s2)){
-                    return true;
-                }
-            }
+        //         if(swap(s1, i, j).equals(s2)){
+        //             return true;
+        //         }
+        //     }
             
-        }
+        // }
         return false;
         
     }
