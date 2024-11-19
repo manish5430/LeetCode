@@ -1,20 +1,21 @@
 class Solution {
     public String freqAlphabets(String s) {
-       StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
+        int n = s.length();
 
-       for(int i = 0; i< s.length();){
-        int number;
-        if((i +2) < s.length()  && s.charAt(i+2) == '#'){
-            number = (s.charAt(i) -'0') * 10  + (s.charAt(i+1) - '0');
-            i = i+3;
+        int i = n-1;
+        while( i >= 0){
+            if( s.charAt(i) == '#'){
+                int num = Integer.parseInt(s.substring(i-2, i));
+                sb.append((char)('a' + num-1));
+                i = i-3;
+            }
+            else if( s.charAt(i) != '#'){
+                int num = s.charAt(i) -'0';
+                sb.append((char)('a' + num-1));
+                i--;            
+            }
         }
-        else{
-            number = s.charAt(i) - '0';
-            i++;
-        }
-        sb.append((char)(number + 96));
-       }
-       return sb.toString();
-       
+        return sb.reverse().toString();
     }
 }
