@@ -8,7 +8,8 @@ class Solution {
             sb.append(temp);
             sb.append(" ");
         }
-        return sb.toString().trim();
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
     }
             
 }
