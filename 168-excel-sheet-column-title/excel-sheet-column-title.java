@@ -1,13 +1,13 @@
 class Solution {
-    public String convertToTitle(int num) {
+    public String convertToTitle(int col) {
         StringBuilder sb = new StringBuilder();
-        
-        while( num > 0){
-            int n = (num -1) % 26;
-            sb.append((char)(n + 'A'));
-            num = (num-1) / 26;
+        while(col > 0){
+            int num = (col-1) % 26;
+            char c = (char)('A' + num);
+            sb.append(c);
+            col = (col-1)/26;
         }
-        sb.reverse();
-        return sb.toString();
+        return sb.reverse().toString();
+        
     }
 }
