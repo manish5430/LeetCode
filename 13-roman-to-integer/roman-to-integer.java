@@ -1,23 +1,23 @@
 class Solution {
     public int romanToInt(String s) {
-        int ans = 0; 
-        Map<Character, Integer> roman = new HashMap<>();
-        roman.put('I', 1);
-        roman.put('V', 5);
-        roman.put('X', 10);
-        roman.put('L', 50);
-        roman.put('C', 100);
-        roman.put('D', 500);
-        roman.put('M', 1000);
+        HashMap<Character, Integer> Map = new HashMap<>();
+        Map.put('I', 1);
+        Map.put('V', 5);
+        Map.put('X', 10);
+        Map.put('L', 50);
+        Map.put('C', 100);
+        Map.put('D', 500);
+        Map.put('M', 1000);
 
-        for(int i = 0; i< s.length()-1; i++){
-            if( roman.get(s.charAt(i)) < roman.get(s.charAt(i+1))){
-                ans = ans - roman.get(s.charAt(i));
+        int ans = 0;
+        for(int i = s.length()-1; i>=0; i--){
+            if(i< s.length()-1  &&  Map.get(s.charAt(i+1)) > Map.get(s.charAt(i))){
+                ans = ans - Map.get(s.charAt(i));           
             }
             else{
-                ans = ans + roman.get(s.charAt(i));
+                ans += Map.get(s.charAt(i)); 
             }
         }
-        return ans + roman.get(s.charAt(s.length()-1));
+        return ans;
     }
 }
