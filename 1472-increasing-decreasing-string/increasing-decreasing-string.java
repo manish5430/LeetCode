@@ -1,30 +1,27 @@
 class Solution {
     public String sortString(String s) {
-        
-        StringBuilder sb = new StringBuilder();
-        HashMap<Character, Integer> map = new HashMap<>();
+        //since we haev only 26 letters to iterate over we can solve this in O(1) complexity
+        int[] freqArr = new int[26];
         for(char c : s.toCharArray()){
-            map.put(c, map.getOrDefault(c, 0) +1);
+            freqArr[c -'a']++;
         }
 
-        ArrayList<Character> list = new ArrayList<>(map.keySet());
-        Collections.sort(list);
-
+        StringBuilder sb = new StringBuilder();
         while(sb.length() < s.length()){
-            for(char c : list){
-                if(map.get(c) > 0){
-                    sb.append(c);
-                    map.put(c, map.get(c) -1);
+            for(int i = 0; i< 26; i++){
+                if( freqArr[i] > 0){
+                    sb.append((char)(i +'a'));
+                    freqArr[i]--;
                 }
             }
-            for(int i = list.size()-1; i>= 0; i--){
-                char c = list.get(i);
-                if(map.get(c) > 0){
-                    sb.append(c);
-                    map.put(c, map.get(c) -1);
+            for(int i = 25; i>=0; i--){
+                if(freqArr[i] >0){
+                    sb.append((char)(i +'a'));
+                    freqArr[i]--;
                 }
             }
         }
-        return sb.toString();        
+    
+        return sb.toString();
     }
 }
