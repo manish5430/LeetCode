@@ -1,46 +1,44 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        return mergeSort(nums);
+        mergeSort(nums, 0, nums.length-1);
+        return nums;
         
     }
 
-    static int[] mergeSort(int[] nums){
-        if(nums.length == 1)  return nums;
-        int mid = nums.length /2;
+    static void mergeSort(int[] nums, int start, int end){
+        if(start >= end) return;
 
-        int[] first = mergeSort(Arrays.copyOfRange(nums, 0, mid));
-        int[] second = mergeSort(Arrays.copyOfRange(nums, mid, nums.length));
+        int mid = start + (end- start)/2;
 
-        return merge(first, second);
+        mergeSort(nums, start, mid);
+        mergeSort(nums, mid+1, end);
+
+        merge(nums, start, mid, end);
     }
 
-    static int[] merge(int[] first, int[] second){
-        int[] result = new int[first.length + second.length];
+    static void merge(int[] nums, int start, int mid, int end){
+        int[] result = new int[end-start +1];
 
-        int i = 0; 
-        int j = 0;
+        int i = start;
+        int j = mid+1;
         int k = 0;
 
-        while(i < first.length && j < second.length){
-            if(first[i] < second[j]){
-                result[k] = first[i];
-                i++;
+        while(i<= mid && j <= end){
+            if(nums[i] < nums[j]){
+                result[k++] = nums[i++];
             }else{
-                result[k] = second[j];
-                j++;
+                result[k++] = nums[j++];
             }
-            k++;
         }
-        while(i< first.length){
-            result[k] = first[i];
-            i++;
-            k++;
+        while(i <= mid){
+            result[k++] = nums[i++];
         }
-        while(j< second.length){
-            result[k] = second[j];
-            j++;
-            k++;
+        while(j <= end){
+            result[k++] = nums[j++];
         }
-        return result;
+
+        for(int m = 0; m< result.length; m++){
+            nums[start +m] = result[m];
+        }
     }
 }
