@@ -4,12 +4,8 @@ class Solution {
         int n = searchWord.length();
 
         for(int i = 0; i< s1.length; i++){
-            if(s1[i].length() >= n){
-                String s2 = s1[i].substring(0, n);
-                if(s2.equals(searchWord)){
-                    return i+1;
-                }
-            }
+            if(s1[i].startsWith(searchWord))
+                return i+1;
         }
         return -1;
         
