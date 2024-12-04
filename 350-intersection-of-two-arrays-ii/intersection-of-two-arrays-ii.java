@@ -1,15 +1,16 @@
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] freqArr = new int[1001];
         ArrayList<Integer> list = new ArrayList<>();
-        for(int i : nums2){
-            map.put(i, map.getOrDefault(i, 0) +1);
+
+        for(int num : nums2){
+            freqArr[num]++;
         }
 
         for(int n : nums1){
-            if(map.getOrDefault(n, 0) > 0){
+            if(freqArr[n] > 0){
                 list.add(n);
-                map.put(n, map.getOrDefault(n, 0) -1);
+                freqArr[n]--;
             }
         }
         int[] ans = new int[list.size()];
