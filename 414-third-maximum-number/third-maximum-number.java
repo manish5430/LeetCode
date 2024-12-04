@@ -1,6 +1,8 @@
 class Solution {
     public int thirdMax(int[] nums) {
     
+    // third maximum meaning after sorting the third number from end
+    
         HashSet<Integer> set = new HashSet<>();
         for(int n : nums){
             set.add(n);
