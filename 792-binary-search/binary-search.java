@@ -1,15 +1,17 @@
 class Solution {
     public int search(int[] nums, int target) {
-        return search1(nums, target, 0, nums.length-1);
+        return recursion(nums, target, 0, nums.length-1);
         
     }
-    static int search1(int[] nums, int target, int s , int e){
-        
-        if( s > e)  return -1;
 
-        int mid = s + (e -s) /2;
-        if(nums[mid] == target)  return mid;
-        if(target < nums[mid])  return search1(nums, target, s, mid-1);
-        return search1(nums, target, mid+1, e);
+    static int recursion(int[] nums, int target, int start, int end){
+        
+        if( start > end)  return -1;
+
+        int mid = start + (end - start)/2;
+        if(target == nums[mid])  return mid;
+        if(target > nums[mid])  return recursion(nums, target, mid+1, end);
+        return recursion(nums, target, start, mid-1);
+        
     }
 }
