@@ -1,25 +1,30 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        int[] freqArr = new int[10001];
+        Arrays.sort(nums);
         int[] ans = new int[2];
 
-        for(int num : nums){
-            set.add(num);
-            freqArr[num]++;
-        }       
-
-        for(int num : nums){
-            if(freqArr[num] == 2){
-                ans[0] = num;
+        for(int i = 0; i< nums.length;){
+            int correct = nums[i] -1;
+            if(nums[i] != nums[correct]){
+                swap(nums, i, correct);
             }
-        }       
+            else{
+                i++;
+            }
+        }
 
-        for(int i = 1; i<= nums.length; i++){
-            if(!set.contains(i)){
-                ans[1] = i;
+        for(int i = 0; i< nums.length; i++){
+            if(nums[i] != i+1){
+                ans[0] = nums[i];
+                ans[1] = i+1;
             }
         }
         return ans;
+    }
+
+    static void swap(int[] nums, int start, int end){
+        int temp = nums[start];
+        nums[start] = nums[end];
+        nums[end] = temp;
     }
 }
