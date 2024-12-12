@@ -1,30 +1,17 @@
+import java.util.Arrays;
 class Solution {
     public int[] frequencySort(int[] nums) {
-        Map<Integer, Integer> hashmap = new HashMap<>();
+        int[] freqArr = new int[202];
         for(int num : nums){
-            hashmap.put(num, hashmap.getOrDefault(num, 0) +1);
+            freqArr[num + 100]++;
         }
 
-        Integer[] boxedNum = new Integer[nums.length];
-        for(int i = 0; i< nums.length; i++){
-            boxedNum[i] = nums[i];
-        }
-
-        Arrays.sort(boxedNum, (a, b)  -> {
-            int freqA = hashmap.get(a);
-            int freqB = hashmap.get(b);
-
-            if( freqA != freqB){
-                return freqA - freqB;
-            }
-            else{
-                return b - a;
-            }
+        Integer[] arr = Arrays.stream(nums).boxed().toArray(Integer[] :: new);
+        Arrays.sort(arr, (a,b) -> {
+            if(freqArr[a +100] != freqArr[b +100]) return freqArr[a +100] - freqArr[b +100];
+            return b -a;
         });
 
-        for(int i = 0; i< boxedNum.length; i++){
-            nums[i] = boxedNum[i];
-        }    
-        return nums;    
+        return Arrays.stream(arr).mapToInt(Integer :: intValue).toArray();
     }
 }
