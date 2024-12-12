@@ -1,6 +1,5 @@
 class Solution {
     public int[] findErrorNums(int[] nums) {
-        Arrays.sort(nums);
         int[] ans = new int[2];
 
         for(int i = 0; i< nums.length;){
