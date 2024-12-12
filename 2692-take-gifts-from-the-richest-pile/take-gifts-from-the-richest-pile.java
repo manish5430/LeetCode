@@ -13,7 +13,7 @@ class Solution {
             for(int i = 0; i< gifts.length; i++){
                 if(gifts[i] == max){
                     gifts[i] = (int)Math.sqrt(max);
-                    isdone = true;
+                    isdone = true;  // just change one element at once 
                     break;
                 }
             }
