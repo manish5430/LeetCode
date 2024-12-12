@@ -1,18 +1,27 @@
 class Solution {
     public int specialArray(int[] nums) {
         Arrays.sort(nums);
-        
-        for(int x =0; x<= nums.length; x++){
+
+        int x = 0;
+        // x gotta be between 0 to nums.length because the no. of elements taht could be bigger than x acn only be all the elements that its length
+        // and we are checkign the count for every no. form 0 to n
+        while(x <= nums.length){
             int count = 0;
-            for(int i = 0; i< nums.length; i++){
-                if( nums[i] >= x){
+
+            for(int num : nums){
+                if( x <= num){
                     count++;
-                } 
+                }
             }
-            if( count == x){
-                return count;
+
+            if( x == count){
+                return x;
             }
+
+            x++;
         }
+
         return -1;
+        
     }
 }
