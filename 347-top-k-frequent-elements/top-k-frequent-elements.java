@@ -11,15 +11,16 @@ class Solution {
         while(i < k){
             int max = 0;
             int maxKey = 0;
-
-            for(Map.Entry<Integer, Integer> entry : map.entrySet()){
-                if(entry.getValue() > max){
-                    max = entry.getValue();
-                    maxKey = entry.getKey();
+            
+            for(int num : map.keySet()){
+                if(map.get(num) > max){
+                    max = map.get(num);
+                    maxKey = num;
                 }
             }
             list.add(maxKey);
             map.remove(maxKey);
+
             i++;
         }
 
