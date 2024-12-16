@@ -1,25 +1,22 @@
 class Solution {
     public int countSubstrings(String s) {
-        int count = 0;
+        int ans = 0;
 
-        for(int i = 0; i<s.length(); i++){
-            for(int j = i; j< s.length(); j++){
-                if( isPalindrome(s, i, j)){
-                    count++;
-                }
-            }
+        for(int i = 0; i< s.length(); i++){
+            
+            ans += Palindrome(s, i, i+1);
+            ans += Palindrome(s, i, i);
         }
-        return count;
+        return ans;
     }
 
-    static boolean isPalindrome(String s, int left, int right){
-       while( left < right){
-            if(s.charAt(left) != s.charAt(right)){
-                return false;
-            }
-            left++;
-            right--;
+    static int Palindrome(String s, int i, int j){
+        int count = 0;
+        while(i >= 0 && j < s.length() && s.charAt(i) == s.charAt(j)){           
+            count++;
+            i--;
+            j++;
         }
-        return true;
+        return count;
     }
 }
