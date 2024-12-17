@@ -12,6 +12,8 @@ class Solution {
         s[start] = s[end];
         s[end] = temp;
 
+// start++ and end-- are post-increment and post-decrement operators.
+       // recursion(s, start++, end--);    is wrong
         return recursion(s, start+1, end-1);
     
     }
