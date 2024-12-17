@@ -1,22 +1,18 @@
 class Solution {
     public void reverseString(char[] s) {
-        int start = 0; 
-        int end = s.length-1;
-
-        while( start < end){
-            char temp = s[start];
-            s[start] = s[end];
-            s[end] = temp;
-            start++;
-            end--;
-        }
-        //System.out.println(Arrays.toString(s));
-
+        char[] s1 = recursion(s, 0, s.length-1);
+        System.out.println(s1);
+        
     }
 
-    // static void swap(char[] arr, int start, int end ){
-    //     char temp = arr[start];
-    //     arr[start] = arr[end];
-    //     arr[end] = temp;
-    // }
+    static char[] recursion(char[] s, int start, int end){
+        if(start > end) return s;
+
+        char temp = s[start];
+        s[start] = s[end];
+        s[end] = temp;
+
+        return recursion(s, start+1, end-1);
+    
+    }
 }
