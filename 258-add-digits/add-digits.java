@@ -1,15 +1,11 @@
 class Solution {
     public int addDigits(int num) {
+        if(num /10 <= 0) return num;
+
+        int sum = num %10 + addDigits(num/10);
         
-        while( num/10 != 0){
-            int sum = 0;
-            while( num/10 != 0){
-                sum = sum + num % 10;
-                num = num /10;
-            }
-            sum = sum + num;
-            num = sum;
-        }
-        return num;
+        if(sum /10 <= 0) return sum;
+
+        return addDigits(sum);
     }
 }
