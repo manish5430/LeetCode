@@ -1,18 +1,11 @@
 class Solution {
     public int kthGrammar(int n, int k) {
-        return findSymbol(n, k);
-    }
+        if(n == 1 && k == 1)  return 0;
 
-    static int findSymbol(int n, int k) {
-        if (n == 1) return 0;  // Base case: Row 1 is "0"
+        // this the mid of that n th row number length
+        int mid = (int)Math.pow(2, n-1) /2; 
 
-        int mid = 1 << (n - 2);  // Size of the first half of the previous row
-        
-        if (k <= mid) {
-            return findSymbol(n - 1, k);  // Same as the previous row's k-th symbol
-        } else {
-            int result = findSymbol(n - 1, k - mid);  // Inverse of the previous row's (k - mid)-th symbol
-            return result == 0 ? 1 : 0;  // Invert the result
-        }
+        if(k <= mid)  return kthGrammar(n-1, k);
+        return 1 - kthGrammar(n-1, k-mid);
     }
 }
