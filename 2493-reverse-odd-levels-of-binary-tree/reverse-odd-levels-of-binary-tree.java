@@ -26,17 +26,9 @@ class Solution {
             for(int i = 0; i< size; i++){
                 TreeNode node = queue.poll();
 
-                if(node.left != null){
-                    queue.offer(node.left);
-                }
-
-                if(node.right != null){
-                    queue.offer(node.right);
-                }
-
-                if(level %2 != 0){
-                    list.add(node);
-                }
+                if(node.left != null)   queue.offer(node.left);
+                if(node.right != null)   queue.offer(node.right);
+                if(level %2 != 0)     list.add(node);
 
             }
 
