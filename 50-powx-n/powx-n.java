@@ -8,9 +8,11 @@ class Solution {
             n1 = -n1;
             x = 1 /x;
         }
+        // for even just x *x then half the power to make it work otherwise 
+// deep recursion is the primary reason you're getting a stack overflow 
 
         if(n1 %2 == 0) return myPow(x *x, (int)(n1 /2));
-        return x * myPow(x, (int)(n1 -1));
+        return x * myPow(x, (int)(n1 -1));  // other than that this is enough
         
     }
 }
