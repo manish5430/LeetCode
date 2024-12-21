@@ -4,6 +4,7 @@ class Solution {
         if (s.length() < p.length()) return result;
         int[] pCount = new int[26];
         int[] sCount = new int[26];
+        
         for (char c : p.toCharArray()) {
             pCount[c - 'a']++;
         }
