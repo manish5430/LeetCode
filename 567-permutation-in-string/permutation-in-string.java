@@ -14,26 +14,18 @@ class Solution {
                 freq2[s2.charAt(j) - 'a'] ++;
             }
 
-            boolean match = true;
-            for(int k = 0; k< 26; k++){
-                if(freq2[k] != freqArr[k]){
-                    match = false;
-                    break;
-                }
-            }
-
-            if(match) return true;
-
+            if(isMatch(freqArr, freq2)) return true;
         }
-        return false;  
+        return false;
+           
     }
 
-    // static boolean isMatch(int[] freqArr, int[] freq2){
-    //     for(int i = 0; i<26; i++){
-    //         if(freqArr[i] != freq2[i]){
-    //             return false;
-    //         }
-    //     }
-    //     return true;
-    // }
+    static boolean isMatch(int[] freqArr, int[] freq2){
+        for(int i = 0; i<26; i++){
+            if(freqArr[i] != freq2[i]){
+                return false;
+            }
+        }
+        return true;
+    }
 }
