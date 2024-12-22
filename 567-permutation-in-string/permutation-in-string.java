@@ -1,18 +1,21 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
         int[] freqArr = new int[26];
+        int[] freq2 = new int[26]; 
 
-        for(char ch : s1.toCharArray()){
-            freqArr[ch - 'a']++;
+        if(s1.length() > s2.length()) return false;
+
+        for(int i = 0; i< s1.length(); i++){
+            freqArr[s1.charAt(i) - 'a']++;
+            freq2[s2.charAt(i) - 'a']++;  // for initial window just that 
         }
 
-        for(int i = 0; i<= s2.length()- s1.length(); i++){
+        if(isMatch(freqArr, freq2)) return true;
 
-            int[] freq2 = new int[26]; 
+        for(int i = 1; i<= s2.length()- s1.length(); i++){
 
-            for(int j = i; j< i + s1.length(); j++){
-                freq2[s2.charAt(j) - 'a'] ++;
-            }
+            freq2[s2.charAt(i-1) - 'a']--;   // last one dcrement 
+            freq2[s2.charAt(i + s1.length() -1) - 'a']++;  // +1 char increament 
 
             if(isMatch(freqArr, freq2)) return true;
         }
