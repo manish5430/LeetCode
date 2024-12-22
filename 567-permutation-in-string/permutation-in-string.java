@@ -7,16 +7,16 @@ class Solution {
         }
 
         for(int i = 0; i<= s2.length()- s1.length(); i++){
-            String s = s2.substring(i, i + s1.length());
 
-            int[] freq2 = new int[26];
-            for(char c : s.toCharArray()){
-                freq2[c - 'a']++;
+            int[] freq2 = new int[26]; 
+
+            for(int j = i; j< i + s1.length(); j++){
+                freq2[s2.charAt(j) - 'a'] ++;
             }
 
             boolean match = true;
-            for(int j = 0; j< 26; j++){
-                if(freq2[j] != freqArr[j]){
+            for(int k = 0; k< 26; k++){
+                if(freq2[k] != freqArr[k]){
                     match = false;
                     break;
                 }
@@ -27,4 +27,13 @@ class Solution {
         }
         return false;  
     }
+
+    // static boolean isMatch(int[] freqArr, int[] freq2){
+    //     for(int i = 0; i<26; i++){
+    //         if(freqArr[i] != freq2[i]){
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }
 }
