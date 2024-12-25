@@ -3,24 +3,21 @@ class Solution {
         String s = String.valueOf(num);
         StringBuilder sb = new StringBuilder(s);
 
-        int max = num; // Start with the original number
-        boolean swapped = false; // Track if a swap has been made
+        int max = num; 
 
-        // Try swapping each pair of digits to maximize the number
         for (int i = 0; i < sb.length(); i++) {
             for (int j = i + 1; j < sb.length(); j++) {
-                // Swap i and j
+                // we just swap it anyway here once 
                 swap(sb, i, j);
-                
-                // Convert the string to a number and check if it's greater than max
+
                 int num2 = Integer.valueOf(sb.toString());
+                // if after swappping we find the number greater tham max then return 
+             //max but if number is not greater than max then revertthe swapping that we did 
                 if (num2 > max) {
-                    max = num2; // Update the max value if we found a larger number
-                    swapped = true; // Mark that a swap has been made
+                    max = num2; 
                 }
-                
-                // Swap back to try the next pair
                 swap(sb, i, j);
+
             }
         }
         
