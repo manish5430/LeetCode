@@ -1,8 +1,10 @@
 class Solution {
     public void solveSudoku(char[][] board) {
 
-        backtracking(board);
-        System.out.println(Arrays.deepToString(board));
+        // backtracking(board);
+        // System.out.println(Arrays.deepToString(board));
+        boolean ans = backtracking(board);
+        System.out.println(ans);
         
     }
 
