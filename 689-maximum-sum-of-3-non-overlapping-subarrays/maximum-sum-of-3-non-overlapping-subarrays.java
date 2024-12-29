@@ -1,40 +1,65 @@
 class Solution {
     public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
-        int n = nums.length;
-
-         int[] prefixSum = new int[n+1];
-        for (int i = 1; i <= n; i++) {
-            prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
+        int bestSingleStart = 0;
+        int[] bestDoubleStart = { 0, k };
+        int[] bestTripleStart = { 0, k, k * 2 };
+        int singleWindowSum = 0;
+        //initial window
+        for(int i = 0; i < k; i++) {
+            singleWindowSum += nums[i];
         }
 
-        // Step 2: Initialize arrays to store sums and indices
-        int[][] sum1 = new int[4][n + 1];  // For 1, 2, or 3 subarrays
-        int[][] index1 = new int[4][n + 1];  // To store the indices of the subarrays
+        int doubleWindowSum = 0;
+        for(int i = k; i < k * 2; i++) {
+            doubleWindowSum += nums[i];
+        }
 
-        // Step 3: Calculate maximum sum of 1, 2, or 3 subarrays using dynamic programming
-        for (int count = 1; count <= 3; count++) {
-            for (int index2 = k * count; index2 <= n; index2++) {
-                int currentSum = prefixSum[index2] - prefixSum[index2 - k] + 
-                                 sum1[count - 1][index2 - k];
+        int tripleWindowSum = 0;
+        for(int i = k * 2; i < k * 3; i++) {
+            tripleWindowSum += nums[i];
+        }
 
-                if (currentSum > sum1[count][index2 - 1]) {
-                    sum1[count][index2] = currentSum;
-                    index1[count][index2] = index2 - k;
-                } else {
-                    sum1[count][index2] = sum1[count][index2 - 1];
-                    index1[count][index2] = index1[count][index2 - 1];
-                }
+        int bestSingleSum = singleWindowSum;
+        int bestDoubleSum = singleWindowSum + doubleWindowSum;
+        int bestTripleSum = singleWindowSum + doubleWindowSum + tripleWindowSum;
+
+        int singleStartIndex = 1;
+        int doubleStartIndex = k + 1;
+        int tripleStartIndex = k * 2 + 1;
+
+        while (tripleStartIndex <= nums.length - k) {
+            // current sum
+            singleWindowSum = singleWindowSum - nums[singleStartIndex - 1] 
+                                              + nums[singleStartIndex + k - 1];
+                                                
+            doubleWindowSum = doubleWindowSum - nums[doubleStartIndex - 1] 
+                                              + nums[doubleStartIndex + k - 1];
+
+            tripleWindowSum = tripleWindowSum - nums[tripleStartIndex - 1] 
+                                              + nums[tripleStartIndex + k - 1];
+                                              
+            // updating best sum
+            if (singleWindowSum > bestSingleSum) {
+                bestSingleStart = singleStartIndex;
+                bestSingleSum = singleWindowSum;
             }
-        }
 
-        // Step 4: Retrieve the indices of the 3 subarrays with the maximum sum
-        int[] result = new int[3];
-        int currentEnd = n;
-        for (int subIndex = 3; subIndex >= 1; subIndex--) {
-            result[subIndex - 1] = index1[subIndex][currentEnd];
-            currentEnd = result[subIndex - 1];
-        }
+            if (doubleWindowSum + bestSingleSum > bestDoubleSum) {
+                bestDoubleStart[0] = bestSingleStart;
+                bestDoubleStart[1] = doubleStartIndex;
+                bestDoubleSum = doubleWindowSum + bestSingleSum;
+            }
 
-        return result;
+            if (tripleWindowSum + bestDoubleSum > bestTripleSum) {
+                bestTripleStart[0] = bestDoubleStart[0];
+                bestTripleStart[1] = bestDoubleStart[1];
+                bestTripleStart[2] = tripleStartIndex;
+                bestTripleSum = tripleWindowSum + bestDoubleSum;
+            }
+            singleStartIndex += 1;
+            doubleStartIndex += 1;
+            tripleStartIndex += 1;
+        }
+        return bestTripleStart;
     }
 }
