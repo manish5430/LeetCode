@@ -1,38 +1,35 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> list = new ArrayList<>();
-        int n = s.length();
+        List<List<String>> result = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
 
-        recursion(s, 0, new ArrayList<>(), list, n);
-        return list;
+        recursion(s, 0, result, list);
+        return result;
+    }
+
+    static void recursion(String s, int index, List<List<String>> result, ArrayList<String> list){
+        if(index == s.length()){
+            result.add(new ArrayList<>(list));
+            return;
+        }
+
+        for(int i = index; i< s.length(); i++){
+            if(isPalindrome(s, index, i)){
+                list.add(s.substring(index, i+1));
+                recursion(s, i+1, result, list);
+                list.remove(list.size() -1);
+            }
+        }
     }
 
     static boolean isPalindrome(String s, int i, int j){
-        while(i< j){
+        while( i< j){
             if(s.charAt(i) != s.charAt(j)){
                 return false;
             }
             i++;
-            j--;            
+            j--;
         }
-        return true;        
-    }
-
-    static void recursion(String s, int partition, List<String> list1, List<List<String>> list, int n){
-        if(partition == n){
-            list.add(new ArrayList<>(list1));
-            return;
-        }
-
-        // this partition would be 0 at starting and then keep on adding more letters 
-        for(int i = partition; i< n; i++){
-            if(isPalindrome(s, partition, i)){
-
-                list1.add(s.substring(partition, i+1));
-                recursion(s, i +1, list1, list, n);
-
-                list1.remove(list1.size() -1);
-            }
-        }
+        return true;
     }
 }
