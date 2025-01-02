@@ -1,29 +1,31 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> result = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<>();
+        List<List<String>> list = new ArrayList<>();
+        List<String> list1 = new ArrayList<>();
 
-        recursion(s, 0, result, list);
-        return result;
+        recursion(s, 0, list, list1);  
+        return list;
     }
 
-    static void recursion(String s, int index, List<List<String>> result, ArrayList<String> list){
+    static void recursion(String s, int index, List<List<String>> list,
+                           List<String> list1){
+        
         if(index == s.length()){
-            result.add(new ArrayList<>(list));
+            list.add(new ArrayList<>(list1));
             return;
         }
 
-        for(int i = index; i< s.length(); i++){
-            if(isPalindrome(s, index, i)){
-                list.add(s.substring(index, i+1));
-                recursion(s, i+1, result, list);
-                list.remove(list.size() -1);
+        for(int j = index; j< s.length(); j++){
+            if(isPalindrome(s, index, j)){
+                list1.add(s.substring(index, j+1));
+                recursion(s, j +1, list, list1);
+                list1.remove(list1.size() -1);
             }
         }
     }
 
     static boolean isPalindrome(String s, int i, int j){
-        while( i< j){
+        while(i< j){
             if(s.charAt(i) != s.charAt(j)){
                 return false;
             }
