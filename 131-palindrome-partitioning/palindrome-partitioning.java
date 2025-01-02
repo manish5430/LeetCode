@@ -18,6 +18,7 @@ class Solution {
         for(int j = index; j< s.length(); j++){
             if(isPalindrome(s, index, j)){
                 list1.add(s.substring(index, j+1));
+                // If a valid palindrome is found between index and j, you want the next recursive call to start right after j. and here j could be 3 
                 recursion(s, j +1, list, list1);
                 list1.remove(list1.size() -1);
             }
