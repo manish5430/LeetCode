@@ -1,12 +1,11 @@
 class Solution {
-    public String convertToTitle(int col) {
-        if(col == 0){
-            return "";
-        }
+    public String convertToTitle(int num) {
+        StringBuilder sb = new StringBuilder();
 
-        col--;
-        char c = (char)('A' + col % 26);
-        return convertToTitle(col/26) + c;       
-        
+        while(num > 0){
+            sb.append((char)((num-1) %26  + 'A'));
+            num = (num-1) /26;
+        }
+        return sb.reverse().toString();
     }
 }
