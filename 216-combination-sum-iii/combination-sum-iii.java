@@ -9,17 +9,19 @@ class Solution {
 
     static void recursion(int k, int index, int target, ArrayList<List<Integer>> result, 
                             ArrayList<Integer> list){
-        // if(list.size() >= k && target == 0){
-        //     result.add(new ArrayList<>(list));
-        //     return;
-        // }
-
-        if(list.size() >= k){
-            if(target == 0){
-                result.add(new ArrayList<>(list));
-            }
+        if(list.size() >= k && target == 0){
+            result.add(new ArrayList<>(list));
             return;
         }
+
+        if(list.size() >= k) return;
+
+        // if(list.size() >= k){
+        //     if(target == 0){
+        //         result.add(new ArrayList<>(list));
+        //     }
+        //     return;
+        // }
 
         for(int i = index; i<= 9; i++){
             if(i <= target){
