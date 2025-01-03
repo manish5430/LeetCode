@@ -1,11 +1,8 @@
 class Solution {
     public String convertToTitle(int num) {
-        StringBuilder sb = new StringBuilder();
+        if(num == 0) return "";
 
-        while(num > 0){
-            sb.append((char)((num-1) %26  + 'A'));
-            num = (num-1) /26;
-        }
-        return sb.reverse().toString();
+        char c = (char)((num -1) %26  + 'A');
+        return convertToTitle((num-1)/26) + c;
     }
 }
