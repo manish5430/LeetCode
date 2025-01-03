@@ -4,21 +4,12 @@ class Solution {
         
     }
 
-    static int recursion(int[] nums, int target, int start, int end){
+    static int recursion(int[] nums, int target, int s, int e){
+        if(s > e) return -1;
 
-        while(start <= end ){
-            int mid = start + (end-start)/2;
-
-            if(target == nums[mid]){
-                return mid;
-            }
-            else if(target > nums[mid]){
-                return recursion(nums, target, mid +1, end);
-            }
-            else if(target < nums[mid]){
-                return recursion(nums, target, start, mid-1);
-            }
-        }
-        return -1;
+        int mid = s + (e-s)/2;
+        if(nums[mid] == target)  return mid;
+        if(nums[mid] > target) return recursion(nums, target, s, mid-1);
+        return recursion(nums, target, mid+1, e);
     }
 }
