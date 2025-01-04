@@ -9,10 +9,10 @@ class Solution {
 
     static void recursion(int[] nums, int i, int target, ArrayList<List<Integer>> result,
                                 ArrayList<Integer> list){
-        if(target < 0 || i == nums.length){
+        if(i == nums.length || target < 0){
             return;
         }
-
+        
         if(target == 0){
             result.add(new ArrayList<>(list));
             return;
@@ -23,6 +23,6 @@ class Solution {
         list.remove(list.size() -1);
 
         recursion(nums, i+1, target, result, list);
-    
+                                
     }
 }
