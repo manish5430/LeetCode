@@ -7,29 +7,21 @@ class Solution {
         return result;
     }
 
-    static void recursion(int k, int index, int target, ArrayList<List<Integer>> result, 
+    static void recursion(int k, int index, int n, ArrayList<List<Integer>> result,
                             ArrayList<Integer> list){
-        if(list.size() >= k && target == 0){
-            result.add(new ArrayList<>(list));
+        if(list.size() >= k){
+            if(n == 0){
+                result.add(new ArrayList<>(list));
+            }
             return;
         }
 
-        if(list.size() >= k) return;
-
-        // if(list.size() >= k){
-        //     if(target == 0){
-        //         result.add(new ArrayList<>(list));
-        //     }
-        //     return;
-        // }
-
         for(int i = index; i<= 9; i++){
-            if(i <= target){
+            if(i <= n){
                 list.add(i);
-                recursion(k, i+1, target- i, result, list);
+                recursion(k, i+1, n -i, result, list);
                 list.remove(list.size() -1);
             }
         }
-
     }
 }
