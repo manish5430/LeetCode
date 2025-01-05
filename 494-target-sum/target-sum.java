@@ -1,8 +1,8 @@
 class Solution {
     public int findTargetSumWays(int[] nums, int target) {
 
-        return recursion(nums, target, 0, 0);
-       
+        return recursion(nums, target, 0, 0);       
+        
     }
 
     static int recursion(int[] nums, int target, int index, int sum){
@@ -15,5 +15,6 @@ class Solution {
         int add = recursion(nums, target, index +1, sum + nums[index]);
 
         return sub + add;
+        
     }
 }
