@@ -1,0 +1,36 @@
+class Solution {
+    public long maxSum(List<Integer> nums, int m, int k) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        //int ans = 0;
+        //int sum = 0;
+        long ans = 0;
+        long sum = 0;
+
+        for(int i = 0; i< k; i++){    // first sliding window 
+            map.put(nums.get(i), map.getOrDefault(nums.get(i), 0) +1);
+            sum += nums.get(i);
+        }
+
+        if(map.size() >= m)  ans = sum;
+
+        int left = 0;
+        int right = k;
+        while(right < nums.size()){
+            
+            map.put(nums.get(left), map.getOrDefault(nums.get(left), 0) -1);
+            if(map.get(nums.get(left)) == 0)  map.remove(nums.get(left));
+            sum -= nums.get(left);
+            left++;
+
+            map.put(nums.get(right), map.getOrDefault(nums.get(right), 0) +1);
+            sum += nums.get(right);
+            right++;
+
+            if(map.size() >= m){
+                ans = Math.max(ans, sum);
+            }
+        }
+
+        return ans;        
+    }
+}
