@@ -1,15 +1,19 @@
 class Solution {
     public int search(int[] nums, int target) {
-        return recursion(nums, target, 0, nums.length-1);
-        
+    
+        return recursion(nums, target, 0, nums.length -1);        
+
     }
 
-    static int recursion(int[] nums, int target, int s, int e){
-        if(s > e) return -1;
+    static int recursion(int[] nums, int target, int start, int end){
 
-        int mid = s + (e-s)/2;
-        if(nums[mid] == target)  return mid;
-        if(nums[mid] > target) return recursion(nums, target, s, mid-1);
-        return recursion(nums, target, mid+1, e);
+        if(start > end) return -1;
+
+        int mid = start +(end - start) /2;
+
+        if(nums[mid] == target) return mid;
+        if(nums[mid] < target) return recursion(nums, target, mid+1, end);
+        return recursion(nums, target, start, mid-1);
+     
     }
 }
