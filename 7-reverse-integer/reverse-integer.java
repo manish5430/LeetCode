@@ -1,28 +1,21 @@
 class Solution {
     public int reverse(int x) {
-        result = 0;
-        revNum(x);
-        //System.out.println(result);
-        return result;
+
+        return recursion(x, 0);
         
     }
-    static int result = 0;
-    static void revNum(int n){
 
-    if(n == 0) return;
+    static int recursion(int num, int result){
+        if(num == 0) return result;
 
-    if((result > Integer.MAX_VALUE /10) || (result == Integer.MAX_VALUE /10) && n%10 > 7){
-        result = 0; 
-        return; 
-    }
-    if((result < Integer.MIN_VALUE /10) || (result == Integer.MIN_VALUE /10) && n%10 < -8){
-        result = 0; 
-        return;
-    }
-          
-    result = result*10 + n%10;      
+        if(result > Integer.MAX_VALUE/10 || (result == Integer.MAX_VALUE/10 && num %10 >7)){
+            return 0;
+        }
+        if(result < Integer.MIN_VALUE/10 || (result == Integer.MIN_VALUE/10 && num %10 < -8)){
+            return 0;
+        }
 
-    revNum(n/10);
-
+        result = result *10 + num %10;
+        return recursion(num/10, result);
     }
 }
