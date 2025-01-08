@@ -1,25 +1,27 @@
 class Solution {
-    public int mod = 1_000_000_007;
+    static int Mod = 1_000_000_007;
     public int minNonZeroProduct(int p) {
         if(p == 1) return 1;
 
-        long mx = (long)(Math.pow(2, p)) - 1;
-        long sm = mx - 1;
-        long n = sm/2;
-        long sum = rec(sm, n);
+        long max = (long)(Math.pow(2, p)) -1; 
+        long max2 = max - 1;
+        long count = max2 / 2;
+        long sum = pow(max2, count);
 
-        return (int)(sum * (mx % mod) % mod);   
+        return (int)(sum * (max % Mod) % Mod);
+
     }
-    public long rec(long val, long n){
-        if(n== 0) return 1;
-        if(n== 1) return (val % mod);
 
-        long newVal = ((val % mod) * (val % mod)) % mod;
+    static long pow(long base, long n){
+        if(n == 0) return 1;
+        if(n == 1) return (base % Mod);
 
-        if(n % 2 != 0){
-             return ((rec(newVal, n/2) % mod) * (val % mod)) % mod;
+        long base1 = ((base % Mod) * (base % Mod)) % Mod;
+
+        if(n % 2 == 1){
+            return ((pow(base1, n/2) % Mod) * (base % Mod)) % Mod;
         }
 
-        return rec(newVal, n/2) % mod;
+        return pow(base1, n/2) % Mod;
     }
 }
