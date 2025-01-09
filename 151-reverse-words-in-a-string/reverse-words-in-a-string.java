@@ -14,9 +14,9 @@ class Solution {
 
         StringBuilder sb = new StringBuilder();
         for(String str : s1){
-            if(! str.isEmpty()){
+            // if(! str.isEmpty()){
                 sb.append(str).append(" ");
-            }
+            // }
         }
 
         return sb.toString().trim();
