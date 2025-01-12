@@ -1,26 +1,19 @@
 class Solution {
     public boolean canBeValid(String s, String locked) {
-        int n = s.length();
-        if(n%2!=0) return false;
+        if(s.length() %2 != 0) return false;
         Stack<Integer> stack = new Stack<>();
         Stack<Integer> unlocked = new Stack<>();
-        for(int i=0;i<n;i++){
+        
+        for(int i = 0; i< s.length(); i++){
             char ch = s.charAt(i);
             char state = locked.charAt(i);
-            if(state == '0'){
-                unlocked.push(i);
-            }else if(ch == '('){
-                stack.push(i);
-            }else{ // locked and closing
-                if(!stack.isEmpty()){
-                    stack.pop();
-                }else{
-                    if(!unlocked.isEmpty()){
-                        unlocked.pop();
-                    }else{
-                        return false;
-                    }
-                }
+
+            if(state == '0')  unlocked.push(i);
+            else if(ch == '(') stack.push(i);
+            else{
+                if(!stack.isEmpty()) stack.pop();
+                else if(!unlocked.isEmpty()) unlocked.pop();
+                else return false;
             }
         }
 
@@ -28,6 +21,8 @@ class Solution {
             stack.pop();
             unlocked.pop();
         }
+
         return (stack.isEmpty());
+
     }
 }
