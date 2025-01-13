@@ -11,7 +11,7 @@ class Solution {
                     map.put(c, map.getOrDefault(c, 0) -1);
                 }
             }
-            if(map.getOrDefault(c, 0) %2 != 0){
+            else{
                 while(map.getOrDefault(c, 0) >1){
                     map.put(c, map.getOrDefault(c, 0) -1);
                 }
