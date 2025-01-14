@@ -3,21 +3,18 @@ class Solution {
         int n = nums1.length;
         int[] arr = new int[n];
         
-        int sum = 0;
+        HashSet<Integer> set = new HashSet<>();
         for(int i = 0; i< n; i++){
+            set.add(nums1[i]);
+
             int count = 0;
             for(int j = 0; j<= i; j++){
-                if(nums1[i] == nums2[j]){
-                    count++;
-                }
-                if(nums1[j] == nums2[i] && i != j){
+                if(set.contains(nums2[j])){
                     count++;
                 }
             }
-            sum += count;
-            arr[i] = sum;
+            arr[i] = count;
         }
-
         return arr;
     }
 }
