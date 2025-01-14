@@ -6,18 +6,19 @@ class Solution {
         int max = 0;
 
         while(j< s.length()){
-            if(!set.contains(s.charAt(j))){
-                set.add(s.charAt(j));
-                max = Math.max(max, set.size());
-            }
-            else{
+            // if(!set.contains(s.charAt(j))){
+            //     set.add(s.charAt(j));
+            //     max = Math.max(max, set.size());
+            // }
+            if(set.contains(s.charAt(j))){
                 while(set.contains(s.charAt(j))){
                     set.remove(s.charAt(i));
                     i++;
                 }
+            }
                 set.add(s.charAt(j));
                 max = Math.max(max, set.size());
-            }
+            
             j++;
         }
         return max;
