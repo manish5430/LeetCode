@@ -4,7 +4,7 @@ class Solution {
         for(char c : s.toCharArray()){
             set.add(c);
         }
-        
+
         int count = 0;
         for(char c : set){
             int first = -1;
@@ -17,15 +17,13 @@ class Solution {
                     last = i;
                 }
             }
-            if(first == last) continue;   // same index no match 
 
-            HashSet<Character> set1 = new HashSet<>();
-            for(int i = first+1; i< last; i++){
-                set1.add(s.charAt(i));
+            HashSet<Character> set2 = new HashSet<>();
+            for(int i = first +1; i< last; i++){
+                set2.add(s.charAt(i));
             }
-            count += set1.size();  // for every c in set we gonna check 
+            count += set2.size();
         }
-
         return count;
     }
 }
