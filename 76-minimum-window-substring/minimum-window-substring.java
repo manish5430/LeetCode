@@ -20,7 +20,7 @@ class Solution {
         
 
             while(isEmpty(map)){
-                int length = j-i;
+                int length = j-i+1;   // +1 because i starts at 0
                 if(length < len){
                     len = length;
                     start = i;
