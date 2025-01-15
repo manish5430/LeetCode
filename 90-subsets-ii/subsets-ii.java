@@ -1,27 +1,19 @@
 class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-        HashSet<List<Integer>> set = new HashSet<>();
-        Arrays.sort(nums);        
-        ArrayList<List<Integer>> result = recursion(nums, 0, new ArrayList<>());
-        set.addAll(result);
-
-        return new ArrayList<>(set);
-
-    }
-
-    static ArrayList<List<Integer>> recursion(int[] nums, int i, ArrayList<Integer> list){
+        Arrays.sort(nums);
         ArrayList<List<Integer>> result = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>();
+        result.add(new ArrayList<>());
 
-        if(i == nums.length){
-            result.add(new ArrayList<>(list));
-            return result;
+        for(int num : nums){
+            int size = result.size();
+            for(int i = 0; i< size; i++){
+                ArrayList<Integer> sublist = new ArrayList<>(result.get(i));
+                sublist.add(num);
+                result.add(sublist);
+            }
         }
-
-        list.add(nums[i]);
-        result.addAll(recursion(nums, i+1, list));
-        list.remove(list.size() -1);
-        result.addAll(recursion(nums, i+1, list));
-
-        return result;
+        set.addAll(result);
+        return new ArrayList<>(set);        
     }
 }
