@@ -1,7 +1,7 @@
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
         ArrayList<List<Integer>> list = new ArrayList<>();
-        Arrays.sort(nums);
+       
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int num : nums){
             map.put(num, map.getOrDefault(num, 0) +1);
