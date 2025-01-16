@@ -1,16 +1,25 @@
 class Solution {
     public boolean checkInclusion(String s1, String s2) {
-        char[] s1arr = s1.toCharArray();
-        Arrays.sort(s1arr);
-        String s1str = new String(s1arr);
+        int[] freq = new int[26];
+        for(char c : s1.toCharArray()){
+            freq[c - 'a']++;
+        }
 
-        for(int i = 0; i<= s2.length()-s1.length(); i++){
-            String substring = s2.substring(i, i+s1.length());
-            char[] s2arr = substring.toCharArray();
-            Arrays.sort(s2arr);
-            String s2str = new String(s2arr);
+        for(int i = 0; i<= s2.length() - s1.length(); i++){
+            String s = s2.substring(i, i+ s1.length());
+            int[] freq1 = new int[26];
+            
+            for(char c : s.toCharArray()){
+                freq1[c - 'a']++;
+            }
 
-            if(s1str.equals(s2str)) return true;
+            boolean isMatch = true;
+            for(int j = 0; j< 26; j++){
+                if(freq[j] != freq1[j]){
+                    isMatch = false;
+                }
+            }
+            if(isMatch) return true;     // if there is even one permutation present
         }
         return false;
         
