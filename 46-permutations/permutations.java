@@ -1,11 +1,12 @@
 class Solution {
     public List<List<Integer>> permute(int[] nums) {
         ArrayList<List<Integer>> result = new ArrayList<>();
-        recursion(nums, new ArrayList<>(), result);
+        recursion(nums, result, new ArrayList<Integer>());
+
         return result;        
     }
 
-    static void recursion(int[] nums, ArrayList<Integer> list,ArrayList<List<Integer>> result){
+    static void recursion(int[] nums, ArrayList<List<Integer>> result, ArrayList<Integer> list){
         if(list.size() == nums.length){
             result.add(new ArrayList<>(list));
             return;
@@ -15,9 +16,8 @@ class Solution {
             if(list.contains(nums[i])){
                 continue;
             }
-
             list.add(nums[i]);
-            recursion(nums, list, result);
+            recursion(nums, result, list);
             list.remove(list.size() -1);
         }
     }
