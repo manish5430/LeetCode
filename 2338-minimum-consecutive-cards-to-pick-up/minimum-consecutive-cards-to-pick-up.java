@@ -9,6 +9,7 @@ class Solution {
                 len = Math.min(len, length);
             }
             map.put(cards[i], i);
+            //is not part of an else statement. It is always executed 
         }
         if(len == Integer.MAX_VALUE) return -1;
         return len;
