@@ -11,10 +11,10 @@ class Solution {
             //count = Math.max(count, map.get(s.charAt(right)));
 
             freq[s.charAt(right) - 'A']++;
-            for(int num : freq){
-                count = Math.max(count, num);
-            }
-            // count = Math.max(count, freq[s.charAt(right) - 'A']);
+            // for(int num : freq){
+            //     count = Math.max(count, num);
+            // }
+            count = Math.max(count, freq[s.charAt(right) - 'A']);
 
             while((right - left +1) - count > k){
                 //map.put(s.charAt(left), map.getOrDefault(s.charAt(left), 0) -1);
