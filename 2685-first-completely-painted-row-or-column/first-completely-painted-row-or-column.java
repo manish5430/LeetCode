@@ -17,7 +17,9 @@ class Solution {
             int[] cell = map.get(arr[i]);
             rowCount[cell[0]]++;
             colCount[cell[1]]++;
-
+            
+            // comparing it with number of column present in that single row and col too 
+            // no.of colums in one row == n
             if(rowCount[cell[0]] == n || colCount[cell[1]] == m){
                 return i;
             }
