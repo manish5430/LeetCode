@@ -1,35 +1,21 @@
 class Solution {
-    public int change(int target, int[] nums) {
-        int n = nums.length;
-        int[][] dp = new int[n][target +1];
-
-        for(int[] rows : dp){
-            Arrays.fill(rows, -1);
+    public int change(int amount, int[] coins) {
+        int n = coins.length;
+        int sum = amount;
+        int[][] dp = new int[n+1][sum+1];
+        for(int i = 0; i< n+1; i++){
+            dp[i][0] = 1;
         }
 
-        return recursion(nums, nums.length -1, target, dp);
-        
-    }
-
-    static int recursion(int[] nums, int i, int target, int[][] dp){
-        if(i == 0){
-            if(target % nums[0] == 0){
-                return 1;
-            }else{
-                return 0;
+        for(int i = 1; i< n+1; i++){
+            for(int j = 0; j< sum+1; j++){
+                if(coins[i-1] <= j){
+                    dp[i][j] = dp[i][j- coins[i-1]] + dp[i-1][j];
+                }else{
+                    dp[i][j] = dp[i-1][j];
+                }
             }
         }
-
-        if(dp[i][target] != -1){
-            return dp[i][target];
-        }
-
-        int notake = recursion(nums, i-1, target, dp);
-        int take = 0;
-        if(nums[i] <= target){
-            take = recursion(nums, i, target - nums[i], dp);
-        }
-
-        return dp[i][target] = notake + take;
+        return dp[n][sum];
     }
 }
