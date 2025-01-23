@@ -16,11 +16,11 @@ class Solution {
         if(dp[i][j] != -1) return dp[i][j];
 
         if(s1.charAt(i) == s2.charAt(j)){
-            dp[i][j] = 1 + recursion(s1, s2, i-1, j-1, dp);
-        }else{
-            dp[i][j] = Math.max(recursion(s1, s2, i-1, j, dp), recursion(s1, s2, i, j-1, dp));
-        }
+            return dp[i][j] = 1 + recursion(s1, s2, i-1, j-1, dp);
+        }//else{
+            return dp[i][j] = Math.max(recursion(s1, s2, i-1, j, dp), recursion(s1, s2, i, j-1, dp));
+        //}
 
-        return dp[i][j];
+        //return dp[i][j];
     }
 }
