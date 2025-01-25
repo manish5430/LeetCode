@@ -1,18 +1,26 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        int i = s.length();
-        int j = t.length();
+        int n = s.length();
+        int m = t.length();
+        int[][] dp = new int[n+1][m+1];
+        for(int i = 0; i< n+1; i++){
+            dp[i][0] = 0;
+        }
+        for(int j = 0; j< m+1; j++){
+            dp[0][j] = 0;
+        }
 
-        if(t.length() < s.length()) return false;
-        
-        while(i > 0 && j > 0){
-            if(s.charAt(i -1) == t.charAt(j-1)){
-                i--;
-                j--;
-            }else{
-                j--;
+        for(int i = 1; i< n+1; i++){
+            for(int j = 1; j< m+1; j++){
+                if(s.charAt(i -1) == t.charAt(j-1)){
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                }
+                else{
+                    dp[i][j] = Math.max(dp[i][j-1], dp[i-1][j]);
+                }
             }
         }
-        return (i == 0);
+
+        return (n == dp[n][m]);
     }
 }
