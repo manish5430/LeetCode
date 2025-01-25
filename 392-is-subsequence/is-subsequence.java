@@ -13,6 +13,6 @@ class Solution {
                 j--;
             }
         }
-        return (i <= 0);
+        return (i == 0);
     }
 }
