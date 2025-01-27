@@ -1,4 +1,4 @@
-class Solution {    // this is Floyd-Warshall algorithm and it gives tle 
+class Solution {    // this is topological sorting 
     public boolean canFinish(int n, int[][] pre) {
         int[] indegree = new int[n];
         ArrayList<List<Integer>> list = new ArrayList<>();  // adjacency list mapping 
