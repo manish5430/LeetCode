@@ -24,9 +24,10 @@ class Solution {
         int ans = grid[i][j];
         grid[i][j] = 0;  // marked visited 
 
-        ans += dfs(grid, i-1, j) + dfs(grid, i+1, j) + dfs(grid, i, j-1) + dfs(grid, i, j+1);
+        ans += dfs(grid, i-1, j) + dfs(grid, i+1, j) + 
+                        dfs(grid, i, j-1) + dfs(grid, i, j+1);
 
-       // grid[i][j] = temp;  // backtracking 
+
 
         return ans;
     }
