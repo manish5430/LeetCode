@@ -1,43 +1,36 @@
 class Solution {
     public int getMaximumGold(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-
-        int[][] dp = new int[m][n];
-        for(int[] rows : dp){
-            Arrays.fill(rows, -1);
-        }
+        int n = grid.length;
+        int m = grid[0].length;
         int max = 0;
-        for(int i = 0; i< m; i++){
-            for(int j = 0; j< n; j++){
+
+        for(int i = 0; i< n; i++){
+            for(int j = 0; j< m; j++){
                 if(grid[i][j] != 0){
-                    max = Math.max(max, recursion(grid, i, j, dp));
+                    max = Math.max(max, dfs(grid, i, j));
                 }
             }
         }
-        return max;
+        return max;        
     }
 
-    static int recursion(int[][] grid, int i, int j, int[][] dp){
-        int m = grid.length;
-        int n = grid[0].length;
-        
+    static int dfs(int[][] grid, int i, int j){
+        int n = grid.length;
+        int m = grid[0].length;
 
-        if(i < 0 || j< 0 || i>= m || j>= n || grid[i][j] == 0) return 0;
+        if(i< 0 || i>= n || j< 0 || j>= m || grid[i][j] == 0) return 0;
 
-        if(dp[i][j] != -1){
-            return 0;
-        }
-        dp[i][j] = 0;
         int temp = grid[i][j];
+        grid[i][j] = 0;  // marked visited 
+
         int max = 0;
         max = Math.max(
-            (Math.max(recursion(grid, i-1, j, dp), recursion(grid, i+1, j, dp))),
-            (Math.max(recursion(grid, i, j-1, dp), recursion(grid, i, j+1, dp)))
+            Math.max(dfs(grid, i+1, j), dfs(grid, i-1, j)),
+            Math.max(dfs(grid, i, j+1), dfs(grid, i, j-1))
         );
 
-        dp[i][j] = -1;
-        return temp + max;        
+        grid[i][j] = temp;
 
+        return temp + max;        
     }
 }
