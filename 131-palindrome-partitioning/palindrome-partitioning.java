@@ -1,28 +1,27 @@
 class Solution {
     public List<List<String>> partition(String s) {
-        List<List<String>> list = new ArrayList<>();
-        List<String> list1 = new ArrayList<>();
+        List<List<String>> result = new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
 
-        recursion(s, 0, list, list1);  
-        return list;
+        recursion(s, 0, result, list);
+        return result;        
     }
 
-    static void recursion(String s, int index, List<List<String>> list,
-                           List<String> list1){
-        
-        if(index == s.length()){
-            list.add(new ArrayList<>(list1));
+    static void recursion(String s, int i, List<List<String>> result,
+                                            ArrayList<String> list){
+        if(i == s.length()){
+            result.add(new ArrayList<>(list));
             return;
-        }
+        }          
 
-        for(int j = index; j< s.length(); j++){
-            if(isPalindrome(s, index, j)){
-                list1.add(s.substring(index, j+1));
-                // If a valid palindrome is found between index and j, you want the next recursive call to start right after j. and here j could be 3 
-                recursion(s, j +1, list, list1);
-                list1.remove(list1.size() -1);
+        for(int j = i; j< s.length(); j++){
+            if(isPalindrome(s, i, j)){
+                list.add(s.substring(i, j+1));
+                
+                recursion(s, j+1, result, list);
+                list.remove(list.size() -1);
             }
-        }
+        }                         
     }
 
     static boolean isPalindrome(String s, int i, int j){
