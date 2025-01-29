@@ -8,15 +8,14 @@ class Solution {
             prefixSum[i+1] = prefixSum[i] + nums[i];
         }
 
-        if((n-1) %(k-1) != 0) return -1; 
+        if((n-1) %(k-1) != 0) return -1;
 
-        for(int len = k; len<= n; len++){   // its not index its the length of merging 
-            for(int i = 0; i<= n -len; i++){
+        for(int len = k; len<= n; len++){
+            for(int i = 0; i<= n-len; i++){
                 int j = i + len -1;
 
                 dp[i][j] = Integer.MAX_VALUE;
-
-                for(int m = i; m< j; m +=k-1){
+                for(int m = i; m< j; m+= k-1){
                     dp[i][j] = Math.min(dp[i][m] + dp[m+1][j], dp[i][j]);
                 }
 
@@ -25,9 +24,6 @@ class Solution {
                 }
             }
         }
-
-        return dp[0][n-1];   
-
-        
+        return dp[0][n-1];
     }
 }
