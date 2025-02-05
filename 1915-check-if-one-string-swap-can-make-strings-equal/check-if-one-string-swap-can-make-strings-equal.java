@@ -1,22 +1,22 @@
 class Solution {
     public boolean areAlmostEqual(String s1, String s2) {
-        for(int i= 0; i< s1.length(); i++){
-            for(int j = 0; j< s1.length(); j++){
-                //String s = swap(s1, i, j);
-            
-                if(swap(s1, i, j).equals(s2)){
-                   return true;
+        char[] arr = s2.toCharArray();
+        if(s1.equals(s2)) return true;
+
+        for(int i = 0; i< arr.length; i++){
+            for(int j = i; j< arr.length; j++){
+                char temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+
+                if(s1.equals(new String(arr))) return true;
+                else {
+                    char temp1 = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp1;
                 }
             }
-        } 
-        return false;       
-    }
-    static String swap(String s, int i, int j){
-        StringBuilder sb = new StringBuilder(s);
-        char temp = sb.charAt(i);
-        sb.setCharAt(i, sb.charAt(j));
-        sb.setCharAt(j, temp);
-        return sb.toString();
-
+        }
+        return false;
     }
 }
