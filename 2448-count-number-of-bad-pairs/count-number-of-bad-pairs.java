@@ -6,7 +6,7 @@ class Solution {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for(int i = 0; i<n; i++){
-            int num = i - nums[i];
+            int num = nums[i] - i;
             int prev = map.getOrDefault(num, 0);
             count += prev;
 
