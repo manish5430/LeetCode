@@ -6,12 +6,14 @@ class Solution {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for(int i = 0; i<n; i++){
-            int num = nums[i] - i;
-            int prev = map.getOrDefault(num, 0);
-            count += prev;
-
-            map.put(num, map.getOrDefault(num, 0) +1);
+            map.put(nums[i] - i, map.getOrDefault(nums[i] - i, 0) +1);
         }
+
+        for(int num : map.keySet()){
+            long k = map.get(num);
+            count += k * (k-1)/2;
+        }
+
         return total - count;
     }
 }
