@@ -9,14 +9,14 @@ class Solution {
         return set.size();
     }
 
-    static void recursion(char[] arr, boolean[] visited,StringBuilder sb, HashSet<String> set){
+    static void recursion(char[] arr, boolean[] visited, StringBuilder sb, HashSet<String>set){
         if(sb.length() > 0){
             set.add(sb.toString());
         }
 
         for(int i = 0; i< arr.length; i++){
-            if(visited[i] || i>0 && arr[i] == arr[i-1] && !visited[i-1]) continue;
-            
+            if(visited[i] || i> 0 && arr[i] == arr[i-1] && !visited[i-1]) continue;
+
             visited[i] = true;
             sb.append(arr[i]);
             recursion(arr, visited, sb, set);
