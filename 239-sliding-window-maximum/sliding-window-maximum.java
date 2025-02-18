@@ -11,7 +11,7 @@ class Solution {
             while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[i]){
                 deque.pollLast();
             }
-            deque.offerLast(i);
+            deque.offer(i);
 
             if(i >= k-1){
                 list.add(nums[deque.peekFirst()]);
