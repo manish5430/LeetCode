@@ -4,28 +4,19 @@ class Solution {
         Deque<Integer> deque = new ArrayDeque<>();
         int n = nums.length;
 
-        int index = 0;
-        while(index < k){
-            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[index]){
-                deque.pollLast();
-            }
-            deque.offerLast(index);
-            index++;
-        }
-        list.add(nums[deque.peekFirst()]);
-
-        for(int i = 1; i< n-k+1; i++){
-            if(! deque.isEmpty() && deque.peekFirst() < i){
+        for(int i= 0; i< n; i++){
+            if(! deque.isEmpty() && deque.peekFirst() <= i-k){
                 deque.pollFirst();
             }
-
-            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[i+k-1]){
+            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[i]){
                 deque.pollLast();
             }
-            deque.offerLast(i+k-1);
-            list.add(nums[deque.peekFirst()]);
-        }
+            deque.offerLast(i);
 
+            if(i >= k-1){
+                list.add(nums[deque.peekFirst()]);
+            }
+        }
         return list.stream().mapToInt(Integer :: intValue).toArray();
         
     }
