@@ -1,5 +1,3 @@
-import java.util.*;
-
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         ArrayList<Integer> list = new ArrayList<>();
@@ -7,8 +5,8 @@ class Solution {
         int n = nums.length;
 
         int index = 0;
-        while (index < k) {
-            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[index]) {
+        while(index < k){
+            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[index]){
                 deque.pollLast();
             }
             deque.offerLast(index);
@@ -16,19 +14,19 @@ class Solution {
         }
         list.add(nums[deque.peekFirst()]);
 
-        for (int i = 1; i < n - k + 1; i++) {
-            // Fix: Corrected the condition to remove out-of-window elements
-            if (!deque.isEmpty() && deque.peekFirst() < i) {
+        for(int i = 1; i< n-k+1; i++){
+            if(! deque.isEmpty() && deque.peekFirst() < i){
                 deque.pollFirst();
             }
 
-            while (!deque.isEmpty() && nums[deque.peekLast()] <= nums[i + k - 1]) {
+            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[i+k-1]){
                 deque.pollLast();
             }
-            deque.offerLast(i + k - 1);
+            deque.offerLast(i+k-1);
             list.add(nums[deque.peekFirst()]);
         }
 
-        return list.stream().mapToInt(Integer::intValue).toArray();
+        return list.stream().mapToInt(Integer :: intValue).toArray();
+        
     }
 }
