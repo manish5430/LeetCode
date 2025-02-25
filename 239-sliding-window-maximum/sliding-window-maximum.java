@@ -14,19 +14,18 @@ class Solution {
         }
         list.add(nums[deque.peekFirst()]);
 
-        for(int i = 1; i< n-k+1; i++){
-            if(! deque.isEmpty() && deque.peekFirst() <= i-1){
+        for(int left = 1; left < n-k+1; left++){
+            if(!deque.isEmpty() && deque.peekFirst() < left){
                 deque.pollFirst();
             }
 
-            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[i+k-1]){
+            while(! deque.isEmpty() && nums[deque.peekLast()] <= nums[left +k-1]){
                 deque.pollLast();
             }
-            deque.offerLast(i+k-1);
+            deque.offerLast(left+ k-1);
             list.add(nums[deque.peekFirst()]);
         }
 
         return list.stream().mapToInt(Integer :: intValue).toArray();
-        
     }
 }
