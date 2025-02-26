@@ -7,9 +7,9 @@ class Solution {
         }
 
         int[] freq = new int[nums.length +1];
-        freq[0] = 1;
-        int prefixSum = 0;
-        int count = 0;
+        freq[0] = 1;    // this is  for subarrays starting from 0 because whenwe are getting 
+        int prefixSum = 0; // count += freq[prefixSum -k] it would be freq[0] and that has to
+        int count = 0;       // be 1 to count it as one subarray sum 
 
         for(int num : nums){
             prefixSum += num;
