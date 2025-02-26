@@ -6,18 +6,17 @@ class Solution {
             else nums[i] = 0;
         }
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] freq = new int[nums.length +1];
+        freq[0] = 1;
         int prefixSum = 0;
         int count = 0;
 
         for(int num : nums){
             prefixSum += num;
 
-            if(prefixSum == k) count++;
+            if(prefixSum >= k)  count += freq[prefixSum -k];
 
-            if(map.containsKey(prefixSum - k)) count += map.get(prefixSum- k);
-
-            map.put(prefixSum, map.getOrDefault(prefixSum, 0) +1);
+            freq[prefixSum]++;
         }
         return count;
     }
