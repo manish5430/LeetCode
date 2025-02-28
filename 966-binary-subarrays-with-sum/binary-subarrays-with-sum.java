@@ -1,17 +1,16 @@
 class Solution {
     public int numSubarraysWithSum(int[] nums, int k) {
-        int[] freq = new int[nums.length +1];
-        freq[0] = 1;
+        HashMap<Integer, Integer> map = new HashMap<>();
         int prefixSum = 0;
         int count = 0;
 
         for(int num : nums){
             prefixSum += num;
 
-            if(prefixSum >= k)  count += freq[prefixSum - k];
+            if(prefixSum == k) count++;
+            if(map.containsKey(prefixSum -k))  count += map.get(prefixSum -k);
 
-            freq[prefixSum]++;
-
+            map.put(prefixSum, map.getOrDefault(prefixSum, 0) +1);
         }
         return count;
     }
