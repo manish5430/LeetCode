@@ -14,9 +14,9 @@ class Solution {
             }
             set.add(s.charAt(j));
             max = Math.max(max, set.size());
-
             j++;
         }
         return max;
+        
     }
 }
