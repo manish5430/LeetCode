@@ -8,11 +8,12 @@ class Solution {
         if(s.length() == 0) return 0;
 
         int i = 0;
-        while(i< s.length() && freq[s.charAt(i) - 'a'] >= k){
+        while(i < s.length() && freq[s.charAt(i) - 'a'] >= k){
             i++;
         }
 
         if(i == s.length()) return s.length();
+
         int left = longestSubstring(s.substring(0, i), k);
         int right = longestSubstring(s.substring(i+1, s.length()), k);
 
