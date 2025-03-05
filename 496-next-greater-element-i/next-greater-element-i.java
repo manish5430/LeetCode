@@ -7,15 +7,15 @@ class Solution {
             int j = 0;
             while(j < nums2.length){
                 if(nums1[i] == nums2[j]){
-                    boolean flag = false;
-                    for(int k = j+1; k< nums2.length; k++){
-                        if(nums2[k] > nums2[j]){
-                            ans[i] = nums2[k];
-                            flag = true;
-                            break;
-                        }
+                    Stack<Integer> stack = new Stack<>();
+                    for(int k = nums2.length-1; k> j; k--){
+                        stack.push(nums2[k]);
                     }
-                    if(flag == false) ans[i] = -1;
+                    while(! stack.isEmpty() && stack.peek() < nums2[j]){
+                        stack.pop();
+                    }
+                    if(stack.isEmpty())  ans[i] = -1;
+                    else ans[i] = stack.pop();
                 }
                 j++;
             }
