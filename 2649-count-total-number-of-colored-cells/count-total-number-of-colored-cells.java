@@ -1,5 +1,13 @@
 class Solution {
     public long coloredCells(int n) {
-        return 1 + 4L * n * (n - 1) / 2;
+        long ans = 1;
+        int x = 4;
+
+        while(n > 1){
+            ans += x;
+            x += 4;
+            n--;
+        }
+        return ans;
     }
 }
