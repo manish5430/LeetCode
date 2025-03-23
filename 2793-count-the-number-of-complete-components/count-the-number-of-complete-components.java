@@ -1,64 +1,67 @@
 class Solution {
-    int[] parent;
-    int[] rank;
-
     public int countCompleteComponents(int n, int[][] edges) {
-        parent = new int[n];
-        rank = new int[n];
+        DSU dsu = new DSU(n);
+        HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
+        for(int[] edge : edges){
+            dsu.union(edge[0], edge[1]);
         }
 
-        for (int[] edge : edges) {
-            union(edge[0], edge[1]);
+        for(int[] edge : edges){
+            int root = dsu.find(edge[0]);
+            map.put(root, map.getOrDefault(root, 0) +1);
         }
 
-        Map<Integer, Set<Integer>> componentVertices = new HashMap<>();
-        Map<Integer, Integer> componentEdges = new HashMap<>();
+        int count = 0;
+        for(int i = 0; i< n; i++){
+            if(dsu.find(i) == i){
+                int nodeCount = dsu.size[i];
+                int edges1 = ((nodeCount) * ( nodeCount -1))/2;
+                if(map.getOrDefault(i, 0) == edges1){
+                    count++;
+                }
+            }
+        }
+        return count;
+        
+    }
 
-        for (int i = 0; i < n; i++) {
-            int root = find(i);
-            componentVertices.computeIfAbsent(root, k -> new HashSet<>()).add(i);
+    class DSU {
+
+        int[] parent;
+        int[] size;
+
+        DSU( int n){
+            parent = new int[n];
+            size = new int[n];
+            for(int i = 0; i< n; i++){
+                parent[i] = i;
+            }
+            Arrays.fill(size, 1);
         }
 
-        for (int[] edge : edges) {
-            int root = find(edge[0]);
-            componentEdges.put(root, componentEdges.getOrDefault(root, 0) + 1);
+        int find(int node){
+            if(parent[node] == node){
+                return node;
+            }
+            parent[node] = find(parent[node]);
+            return parent[node];
         }
 
-        int completeCount = 0;
-        for (int root : componentVertices.keySet()) {
-            int numVertices = componentVertices.get(root).size();
-            int expectedEdges = numVertices * (numVertices - 1) / 2;
+        void union(int node1, int node2){
+            int parent1 = find(node1);
+            int parent2 = find(node2);
 
-            if (componentEdges.getOrDefault(root, 0) == expectedEdges) {
-                completeCount++;
+            if(parent1 == parent2) return;
+
+            if(size[parent1] > size[parent2]){
+                parent[parent2] = parent1;
+                size[parent1] += size[parent2];
+            }else{
+                parent[parent1] = parent2;
+                size[parent2] += size[parent1];
             }
         }
 
-        return completeCount;
-    }
-
-    int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]);
-        }
-        return parent[x];
-    }
-
-    void union(int x, int y) {
-        int rootX = find(x);
-        int rootY = find(y);
-        if (rootX == rootY) return;
-
-        if (rank[rootX] < rank[rootY]) {
-            parent[rootX] = rootY;
-        } else if (rank[rootX] > rank[rootY]) {
-            parent[rootY] = rootX;
-        } else {
-            parent[rootY] = rootX;
-            rank[rootX]++;
-        }
     }
 }
