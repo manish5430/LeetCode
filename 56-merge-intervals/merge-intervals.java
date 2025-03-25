@@ -15,13 +15,7 @@ class Solution {
                 list.add(nums[i]);
             }
         }
-        int[][] ans = new int[list.size()][2];
-        int index = 0;
-        for(int[] arr : list){
-            ans[index][0] = arr[0];
-            ans[index][1] = arr[1];
-            index++;
-        }
+        int[][] ans = list.toArray(new int[list.size()][]);
         return ans;
     }
 }
