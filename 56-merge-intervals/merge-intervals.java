@@ -1,14 +1,13 @@
 class Solution {
     public int[][] merge(int[][] nums) {
         int n = nums.length;
-
-        Arrays.sort(nums, (a, b) -> a[0] - b[0]);
-
         ArrayList<int[]> list = new ArrayList<>();
+
+        Arrays.sort(nums, (a,b) -> a[0] - b[0]);
         list.add(nums[0]);
 
         for(int i = 1; i< n; i++){
-            if(nums[i][0] <= list.get(list.size()-1)[1]){
+            if(list.get(list.size()-1)[1] >= nums[i][0]){
                 list.get(list.size()-1)[1] = Math.max(list.get(list.size()-1)[1], nums[i][1]);
             }
             else{
