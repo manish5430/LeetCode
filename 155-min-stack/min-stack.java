@@ -1,5 +1,6 @@
 class MinStack {
-    Stack<int[]> stack;
+    Stack<Long> stack;
+    long minVal;
 
     public MinStack() {
         stack = new Stack<>();
@@ -7,28 +8,44 @@ class MinStack {
     }
     
     public void push(int val) {
+        long value = val;  // simply convertiing this int val into long 
         if(stack.isEmpty()){
-            stack.push(new int[]{val, val});
+            stack.push(value);
+            minVal = value;
         }
         else{
-            int minVal = Math.min(val, stack.peek()[1]);
-            stack.push(new int[]{val, minVal});
-        }
-        
+            if(value < minVal){
+                stack.push(2 * value - minVal);
+                minVal = value;
+            }
+            else{
+                stack.push(value);
+            }
+        }   
     }
     
     public void pop() {
+        long top = stack.peek();
+        if(top < minVal){
+            minVal = 2 * minVal - top;
+        }
+         
         stack.pop();
         
     }
     
     public int top() {
-        return stack.peek()[0];
+        long top = stack.peek();
+        if(top < minVal){
+            return (int) minVal;
+        }
+
+        return (int) top;
         
     }
     
     public int getMin() {
-        return stack.peek()[1];
+        return (int) minVal;
         
     }
 }
