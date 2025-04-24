@@ -11,6 +11,7 @@ class Solution {
             }
         }
 
-        return (count1 + 1)/2;  
+        if(count2 %2 == 0) return count2/2;
+        return (count2 +1) /2;   
     }
 }
