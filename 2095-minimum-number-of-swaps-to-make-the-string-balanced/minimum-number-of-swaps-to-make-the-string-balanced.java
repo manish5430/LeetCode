@@ -11,6 +11,6 @@ class Solution {
             }
         }
 
-        return (count2 + 1)/2;  
+        return (count1 + 1)/2;  
     }
 }
