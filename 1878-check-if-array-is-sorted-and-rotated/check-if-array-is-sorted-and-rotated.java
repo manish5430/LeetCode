@@ -1,18 +1,33 @@
 class Solution {
     public boolean check(int[] nums) {
-        int n = nums.length;
-        int count = 0;
 
-        for(int i = 1; i< n; i++){
-            if(nums[i-1] > nums[i]){
-                count++;
+        int n = nums.length;
+        int max = nums[0];
+        int x = 0;
+
+        for(int i = 0; i< n; i++){
+            if(nums[i] >= max) {
+                max = nums[i];
+                x = i;
             }
-   
-            if(count == 1){
-                if(nums[0] < nums[n-1]) return false;
-            } 
-            if(count > 1) return false;
         }
-        return true;
+
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for(int i = x+1; i< n; i++){
+            list.add(nums[i]);
+        }
+        for(int i = 0; i<= x; i++){
+            list.add(nums[i]);
+        }
+
+        int k = list.size();
+        for(int i = 0; i< k-1; i++){
+            if(list.get(0) == list.get(k-1)) continue;
+            if(list.get(i) > list.get(i+1)) return false;
+        }
+
+        return true;      
+        
     }
 }
